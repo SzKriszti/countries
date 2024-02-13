@@ -1,4 +1,13 @@
-# React + Vite
+Countries:
+
+Used languages and technologies:
+- React + Vite
+- MUI
+- JavaSript
+- REST Cointries API
+
+
+React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
