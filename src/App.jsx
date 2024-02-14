@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Country from './components/Country'
 //import Countries from './components/Countries'
 import './App.css'
+import LoadingMask from './components/LoadingMask'
 
 function App() {
   const [countries, setCountries] = useState(null)
@@ -12,6 +13,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         setCountries(data)
+        console.log(data[0])
       })
   }, [])
 
@@ -46,7 +48,7 @@ function App() {
             {countries.map((country, index) => <Country country={country} key={index}/>)}
           </>
           : 
-          <p>loading...</p>
+          <LoadingMask/>
         }
 
       </div>
