@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import Country from './components/Country'
-//import Countries from './components/Countries'
 import './App.css'
 import LoadingMask from './components/LoadingMask'
+import { Box, Button, Container, Typography } from '@mui/material'
 
 function App() {
   const [countries, setCountries] = useState(null)
@@ -31,27 +31,22 @@ function App() {
 
   return (
  
-      <div className='App'>
-        <h1>Countries</h1>
+      <Container className='App' sx={{}}>
+        <Typography variant='h4'>Countries</Typography>
 
-        {/*countries 
-          ? 
-          <Countries countries = {countries} setCountries = {setCountries}/> 
-          : 
-          <p>loading...</p>
-        */}
-
+      <Box>
         {countries 
           ? 
           <>
-            <button onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} by population</button>
+            <Button onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} by population</Button>
             {countries.map((country, index) => <Country country={country} key={index}/>)}
           </>
           : 
           <LoadingMask/>
         }
+      </Box>
 
-      </div>
+      </Container>
         
   )
 }
