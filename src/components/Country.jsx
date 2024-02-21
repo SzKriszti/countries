@@ -12,7 +12,7 @@ function Country({ country }) {
   }
 
   return (
-    <Card className='country' sx={{ maxWidth: 450}}>
+    <Card className='country' sx={{ maxWidth: '100%', marginTop: 3 }}>
 
       <CardMedia sx={{ height: 300 }} image={country.flags.png} title={country.flags.alt}/>
       
@@ -25,13 +25,16 @@ function Country({ country }) {
         </Typography>
       </CardContent>
 
-      <CardActions>
-        <Button size="small" color='primary' onClick={showDetails}>show {details === 'more' ? 'more' : 'less'}</Button>
+      <CardActions sx={{ justifyContent: 'space-between' }}>
+        <Button size="small" variant="outlined" onClick={showDetails}>show {details === 'more' ? 'more' : 'less'}</Button>
+
         {show && 
-          <CardContent>
+          <CardContent sx={{ }}>
+
             <CardContent sx={{ padding: 1 }}>
               <Typography variant="body2" color="text.secondary">Currencies: </Typography>
             </CardContent>
+
             {country.currencies 
             ?(
             Object.keys(country.currencies).map((currName, index) => 
@@ -41,6 +44,7 @@ function Country({ country }) {
             "has no currencies"}
           </CardContent>
         }
+
       </CardActions>
 
     </Card>

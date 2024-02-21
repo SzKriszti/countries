@@ -1,4 +1,4 @@
-Countries:
+Fun with flags:
 
 Used languages and technologies:
 - React + Vite
@@ -6,12 +6,4 @@ Used languages and technologies:
 - JavaSript
 - REST Cointries API
 
-
-React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In this webpage the user could search for countries by their names, sort them ascending or descending by population, or read other detailt, by clicking the show more button. 

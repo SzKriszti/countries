@@ -1,50 +1,70 @@
 import { useEffect, useState } from 'react'
 import Country from './components/Country'
-import './App.css'
 import LoadingMask from './components/LoadingMask'
-import { Box, Button, Container, Typography } from '@mui/material'
+import { Box, Button, Container, TextField, Typography } from '@mui/material'
 
 function App() {
   const [countries, setCountries] = useState(null)
   const [sort, setSort] = useState('asc')
+  const [filteredCountries, setFilteredCountries] = useState(null)
+  const [searchString, setSearchString] = useState("")
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then(res => res.json())
-      .then(data => {
-        setCountries(data)
-        console.log(data[0])
-      })
+      .then(data => setTimeout(() => setCountries(data), 1000)
+      )
   }, [])
 
+  useEffect(() => {
+    if (countries) {
+      setFilteredCountries(
+        countries.filter(
+          country =>
+            country.name &&
+            country.name.common.toLowerCase().includes(searchString.toLowerCase())
+            )
+      )
+    }
+  }, [searchString, countries])
+
   const sortCountries = () => {
-    setCountries([...countries
+    setCountries([...countries]
       .sort((a, b) => sort === 'asc'
       ?
       a.population - b.population
       :
       b.population - a.population)
-    ])
+    )
 
     setSort(sort === 'asc' ? 'desc' : 'asc')
   }
 
   return (
  
-      <Container className='App' sx={{}}>
-        <Typography variant='h4'>Countries</Typography>
+      <Container className='App' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Typography variant='h2' sx={{ padding: 5 }}>Fun with flags</Typography>
 
-      <Box>
+      <>
         {countries 
           ? 
-          <>
-            <Button onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} by population</Button>
-            {countries.map((country, index) => <Country country={country} key={index}/>)}
-          </>
+          <Box sx={{ maxWidth: '500px'}}>
+            <TextField variant="outlined" label="search" type="text" sx={{ width: '100%'}} onChange={event => {setSearchString(event.target.value)}}/>
+            
+            <Button variant="contained" sx={{ marginTop: 3 }} onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} by population</Button>
+          
+            {searchString === ""
+              ?
+              countries.map((country, index) => <Country country={country} key={index}/>)
+              :
+              filteredCountries.map((country, index) => <Country country={country} key={index}/>)
+            }
+            
+          </Box>
           : 
           <LoadingMask/>
         }
-      </Box>
+      </>
 
       </Container>
         

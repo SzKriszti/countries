@@ -2,7 +2,7 @@ import { Box, CircularProgress } from "@mui/material"
 
 function LoadingMask() {
   return (
-    <Box sx={{ display:'flex' }}>
+    <Box variant="determinate" sx={{ display:'flex' }}>
       <CircularProgress/>
     </Box>
   )
