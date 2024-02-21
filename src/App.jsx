@@ -43,15 +43,17 @@ function App() {
   return (
  
       <Container className='App' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Typography variant='h2' sx={{ padding: 5 }}>Fun with flags</Typography>
+        <Typography variant='h2' sx={{ padding: 5, fontStyle: 'italic' }}>Fun with flags</Typography>
 
       <>
         {countries 
           ? 
-          <Box sx={{ maxWidth: '500px'}}>
+          <Box sx={{ maxWidth: '500px' }}>
             <TextField variant="outlined" label="search" type="text" sx={{ width: '100%'}} onChange={event => {setSearchString(event.target.value)}}/>
             
-            <Button variant="contained" sx={{ marginTop: 3 }} onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} by population</Button>
+            <Box sx={{display: 'flex', justifyContent: 'center' }}>
+              <Button variant="contained" sx={{ marginTop: 3 }} onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} <br/> by population</Button>
+            </Box>
           
             {searchString === ""
               ?
