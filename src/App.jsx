@@ -1,7 +1,26 @@
 import { useEffect, useState } from 'react'
 import Country from './components/Country'
 import LoadingMask from './components/LoadingMask'
-import { Box, Button, Container, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, CssBaseline, TextField, ThemeProvider, Typography, createTheme, responsiveFontSizes } from '@mui/material'
+
+let theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#38879A',
+      light: '#04BBE7',
+      dark: '#236474',
+      contrastText: '#242105',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Roboto',
+    ].join(','),
+  },
+})
+
+theme = responsiveFontSizes(theme)
 
 function App() {
   const [countries, setCountries] = useState(null)
@@ -42,17 +61,22 @@ function App() {
 
   return (
  
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+
       <Container className='App' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography variant='h2' sx={{ padding: 5, fontStyle: 'italic' }}>Fun with flags</Typography>
 
       <>
         {countries 
           ? 
-          <Box sx={{ maxWidth: '500px' }}>
-            <TextField variant="outlined" label="search" type="text" sx={{ width: '100%'}} onChange={event => {setSearchString(event.target.value)}}/>
+          <Box sx={{ width: '500px' }}>
+            <TextField variant="outlined" label="search" type="text" sx={{ width: '100%'}} 
+              onChange={event => {setSearchString(event.target.value)}}/>
             
             <Box sx={{display: 'flex', justifyContent: 'center' }}>
-              <Button variant="contained" sx={{ marginTop: 3 }} onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} <br/> by population</Button>
+              <Button variant="contained" sx={{ marginTop: 3, color: '#FFFFFF' }} 
+                onClick={sortCountries}>Sort {sort === 'asc' ? 'ascending' : 'descending'} <br/> by population</Button>
             </Box>
           
             {searchString === ""
@@ -69,7 +93,8 @@ function App() {
       </>
 
       </Container>
-        
+
+    </ThemeProvider>  
   )
 }
 

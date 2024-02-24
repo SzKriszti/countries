@@ -26,7 +26,8 @@ function Country({ country }) {
       </CardContent>
 
       <CardActions sx={{ justifyContent: 'space-between' }}>
-        <Button size="small" variant="outlined" onClick={showDetails}>show {details === 'more' ? 'more' : 'less'}</Button>
+        <Button size="small" variant="outlined" 
+          onClick={showDetails}>show {details === 'more' ? 'more' : 'less'}</Button>
 
         {show && 
           <CardContent sx={{ }}>
