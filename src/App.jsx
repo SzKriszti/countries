@@ -64,13 +64,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Container className='App' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Container maxWidth='lg' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography variant='h2' sx={{ padding: 5, fontStyle: 'italic' }}>Fun with flags</Typography>
 
       <>
         {countries 
           ? 
-          <Box sx={{ width: '500px' }}>
+          <Box sx={{ width: {xs: '250px', sm: '500px', md: '500px', lg:'500px'} }}>
             <TextField variant="outlined" label="search" type="text" sx={{ width: '100%'}} 
               onChange={event => {setSearchString(event.target.value)}}/>
             

@@ -12,9 +12,9 @@ function Country({ country }) {
   }
 
   return (
-    <Card className='country' sx={{ maxWidth: '100%', marginTop: 3 }}>
+    <Card sx={{ maxWidth: '100%', marginTop: 3 }}>
 
-      <CardMedia sx={{ height: 300 }} image={country.flags.png} title={country.flags.alt}/>
+      <CardMedia sx={{ height: {xs: '150px', sm: '300px', md: '300px', lg: '300px'} }} image={country.flags.png} title={country.flags.alt}/>
       
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
